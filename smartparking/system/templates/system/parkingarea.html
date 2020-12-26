@@ -1,0 +1,5 @@
+<h1> These are the parking areas available. Choose one</h1>
+
+{% for p in parkingarea %}
+    <h2> <a href = "{% url 'system:aboutparkingarea' p.id %}" >{{p.name}}</a>located at {{p.location}} has a total {{p.number_of_parking_slots}} and base amount {{p.base}} and tariff of {{p.tariff}}</h2>
+{% endfor %}

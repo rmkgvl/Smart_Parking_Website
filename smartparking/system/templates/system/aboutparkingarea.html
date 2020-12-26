@@ -1,0 +1,12 @@
+{% with parkingarea.all|first as x %}
+    <h1> This parking area is open from {{x.openingtime}} to {{x.closingtime}} </h1>
+
+    
+    
+
+    <form method= "POST" action="{% url 'system:checkout' %}">
+        {% csrf_token %}
+        <label for="entry-time">Choose the entry time</label>
+        <input type="datetime-local" id="entry-time" name="entry-time" min="2000-06-07T00:00" max="2050-06-14T00:00">
+        <input type="submit" value="Book">
+    </form>

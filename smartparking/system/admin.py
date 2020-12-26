@@ -4,5 +4,5 @@ from .models import *
 admin.site.register(Admin)
 admin.site.register(Customer)
 admin.site.register(Parking_area)
-admin.site.register(Parking_slot)
+#admin.site.register(Parking_slot)
 admin.site.register(Orders)
