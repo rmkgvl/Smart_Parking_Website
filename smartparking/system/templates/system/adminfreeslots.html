@@ -1,1 +1,14 @@
-<h1> This are the orders for your parking slot </h1>
+<h1> This are the today's entry times and expected exit times for your parking slot . </h1>
+<h1> Click free once the user has left the parking slot. </h1> 
+
+
+
+{% for o in orders %}
+
+    <h2> {{o.customer.first_name}} has booked with vehicle no. {{o.vehicle_number}} having starting time {{o.starting_time}}</h2>
+    <form method= "POST" action="{% url 'Admin:freed' %}">
+        {% csrf_token %}
+        <input type = "Submit" value="Free">
+    </form>
+
+{% endfor %}

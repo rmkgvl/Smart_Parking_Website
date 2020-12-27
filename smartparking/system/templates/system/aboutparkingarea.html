@@ -1,10 +1,16 @@
 {% with parkingarea.all|first as x %}
     <h1> This parking area is open from {{x.openingtime}} to {{x.closingtime}} </h1>
 
-    
+    {% for p in list %}
+        {% if p %}  
+            <h2> The parking slot is vacant. </h2> 
+        {% else %}
+            <h2> The parking slot is occupied. </h2>
+        {% endif %}
+    {% endfor %}
     
 
-    <form method= "POST" action="{% url 'system:checkout' %}">
+    <form method= "POST" action="{% url 'Admin:checkout' %}">
         {% csrf_token %}
         <label for="entry-time">Choose the entry time</label>
         <input type="datetime-local" id="entry-time" name="entry-time" min="2000-06-07T00:00" max="2050-06-14T00:00">
@@ -13,3 +19,5 @@
         <input type="datetime-local" id="exit-time" name="exit-time" min="2000-06-07T00:00" max="2050-06-14T00:00">
         <input type="submit" value="Check">
     </form>
+
+{% endwith %}

@@ -21,4 +21,6 @@ urlpatterns = [
     path('aboutparkingarea/<int:parking_id>/', aboutparkingarea, name = "aboutparkingarea"),
     path('success/', OrderSuccess, name = "OrderSuccess"),
     path('checkout/', checkout, name = "checkout"),
+    path('adminfreeslots/<int:parking_id>/',adminfreeslots, name = "adminfreeslots"),
+    path('freed/',freed, name= "freed"),
 ]

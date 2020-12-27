@@ -1,6 +1,6 @@
 {% if possible %}
     <h1> Yay! slot free </h1>
-    <form method= "POST" action="{% url 'system:OrderSuccess' %}">
+    <form method= "POST" action="{% url 'Admin:OrderSuccess' %}">
         {% csrf_token %}
         <label for="veh_no">Enter vehicle number</label>
         <input type="text" id="veh_no" name="veh_no">
