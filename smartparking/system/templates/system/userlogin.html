@@ -1,0 +1,48 @@
+{% extends 'system/base.html' %}
+{% block head %}
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: darkcyan !important;
+        color: cornsilk;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Salon System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Admin:index' %}">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<hr>
+<h1 class="heading1">user Login</h1>
+<hr>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-6">
+        <div class="form-group">
+            <form action="{% url 'Admin:userlogin' %}" method="POST">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input class="form-control" type="text" name="username" placeholder="enter username">
+
+                <label for="password">Password:</label>
+                <input class="form-control" type="password" name="password" placeholder="enter password">
+                <p></p>
+                <input type="submit" name="" value="login">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,11 +1,13 @@
 from django.urls import path
 from .views import *
+from django.conf.urls.static import static
 
 app_name = "Admin"
 
 urlpatterns = [
     path('',index,name="index"),
     path('register/',register,name="register"),
+    path('aboutus/', aboutus, name="aboutus"),
     path('login/', login, name="login"),
     path('adminregistration/',adminregistration,name="adminregistration"),
     path('adminlogin/',adminlogin,name="adminlogin"),
@@ -17,4 +19,6 @@ urlpatterns = [
     path('parkingarea/',viewparkingareas, name = "parkingarea"),
     path('addparkingarea/',addparkingarea, name="addparkingarea"),
     path('aboutparkingarea/<int:parking_id>/', aboutparkingarea, name = "aboutparkingarea"),
+    path('success/', OrderSuccess, name = "OrderSuccess"),
+    path('checkout/', checkout, name = "checkout"),
 ]
