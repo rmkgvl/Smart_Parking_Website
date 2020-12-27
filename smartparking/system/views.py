@@ -208,3 +208,8 @@ def OrderSuccess(request):
     order = Orders(parking_area_id = request.session['pid'], customer = request.session['user_id'], vehicle_number = request.session['veh_no'], starting_time = getstarttime(request), ending_time = getexittime(request), status = False)
     order.save()
     return render(request, 'system/success.html', context)
+
+
+def adminfreeslots(request):
+
+    return render(request, 'system/adminfreeslots.html', context)
