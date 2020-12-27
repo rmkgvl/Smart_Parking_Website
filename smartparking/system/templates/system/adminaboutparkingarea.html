@@ -3,9 +3,9 @@
 
     {% for p in list %}
         {% if p %}  
-            <h2> The parking slot is vacant. </h2> 
+            <h2> {{forloop.counter}}. The parking slot is vacant. </h2> 
         {% else %}
-            <h2> The parking slot is occupied. </h2>
+            <h2> {{forloop.counter}}. The parking slot is occupied. </h2>
         {% endif %}
     {% endfor %}
     
