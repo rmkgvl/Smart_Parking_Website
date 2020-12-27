@@ -165,6 +165,15 @@ def aboutparkingarea(request, parking_id):
     }
     return render(request, 'system/aboutparkingarea.html', context)
 
+def adminaboutparkingarea(request, parking_id):
+    request.session['pid'] = str(parking_id)
+    parkingarea = Parking_area.objects.filter(id = parking_id)
+    context = {
+        'parkingarea' : parkingarea,
+        'list' : dict1[str(parking_id)],
+    }
+    return render(request, 'system/adminaboutparkingarea.html', context)
+
 def getstarttime(request):
     date_time = request.session['entry-time']
     date_time = datetime.datetime.strptime(date_time, "%Y-%m-%dT%H:%M")
@@ -220,15 +229,16 @@ def checkout(request):
     return render(request, 'system/checkout.html', context)
 
 def OrderSuccess(request):
-    parking_area = Parking_area.objects.get(pk = int(request.session['pid']))
-    order = Orders(parking_area_id = parking_area, customer = Customer.objects.get(pk = int(request.session['user_id'])), vehicle_number = request.POST['veh_no'], starting_time = getstarttime(request), ending_time = getexittime(request), status = False)
-    order.save()
+    if(check_availability(request)):
+        parking_area = Parking_area.objects.get(pk = int(request.session['pid']))
+        order = Orders(parking_area_id = parking_area, customer = Customer.objects.get(pk = int(request.session['user_id'])), vehicle_number = request.POST['veh_no'], starting_time = getstarttime(request), ending_time = getexittime(request), status = False)
+        order.save()
     return render(request, 'system/success.html', {})
 
 
 def adminfreeslots(request, parking_id):
     today = datetime.date.today()
-    orders = Orders.objects.filter(parking_area_id = parking_id).filter(starting_time__date = today)
+    orders = Orders.objects.filter(parking_area_id = parking_id).filter(starting_time__date__gte = today)
     context = {
         'orders' : orders,
     }

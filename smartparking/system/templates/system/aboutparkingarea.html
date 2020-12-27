@@ -1,5 +1,5 @@
 {% with parkingarea.all|first as x %}
-    <h1> This parking area is open from {{x.openingtime}} to {{x.closingtime}} </h1>
+    <h1> This parking area is open from {{x.opening_time}} to {{x.closing_time}} </h1>
 
     {% for p in list %}
         {% if p %}  
