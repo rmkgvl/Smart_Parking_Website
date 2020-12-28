@@ -124,13 +124,18 @@ def userlogin(request):
 
 def admindashboard(request):
     admindetails = Admin.objects.filter(id = request.session['admin_id']).first()
+    parkingarea = Parking_area.objects.filter(admin_id = request.session['admin_id'])
     if(admindetails == None):
         return HttpResponse("<h1> HACKER!!! <h1>")
     context = {
-        'admindetails' : admindetails
+        'admindetails' : admindetails,
+        'parkingarea' : parkingarea
     }
     return render(request, 'system/admindashboard.html', context)
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('Admin:home'))
 
 def userdashboard(request):
     userdetails = Customer.objects.filter(id=request.session['user_id']).first()
@@ -150,7 +155,7 @@ def addparkingarea(request):
             object1.admin_id = Admin.objects.get(id=request.session['admin_id'])
             object1.number_of_parking_slots = 5
             object1.save()
-            dict1[str(object1.id)] =  [True, True, True, False, False]
+            dict1[str(object1.id)] =  [True, True, True, True, True]
             return HttpResponseRedirect(reverse('Admin:admindashboard'))
     else:
         form = ParkingAreaForm()
@@ -251,7 +256,7 @@ def adminfreeslots(request, parking_id):
     context = {
         'orders' : orders,
     }
-
+    print(orders.first())
     return render(request, 'system/adminfreeslots.html', context)
 
 def freed(request):

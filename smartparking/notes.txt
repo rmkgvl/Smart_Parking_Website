@@ -1,0 +1,64 @@
+<section class="bg-v5-light pt-s5 pb-s5 text-white">
+		<div class="container pt-s3 pb-s3">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="accordion" id="accordion-acc1">
+						<div class="card border-none bg-none">
+							<div id="headingThree-acc1-3">
+                            {% for p in parkingarea %}
+								<h5 class="mb-0">
+									<button class="btn btn-link btn-block text-uppercase text-size-14 text-bold-600 text-dark rounded-0 pl-0 pr-0 text-left text-cherry--active text-cherry--hover collapsed pt-s1 pb-s1" type="button" data-toggle="collapse" data-target="#collapseThree-acc1-3" aria-expanded="false" aria-controls="collapseThree-acc1-3">
+										<span class="mr-s1">
+											<span>
+												<i class="fa fa-plus hide"></i>
+												<i class="fa fa-minus show"></i>
+											</span>
+										</span>
+										{% p.name %}
+									</button>
+								</h5>
+							</div>
+							<div id="collapseThree-acc1-3" class="collapse" aria-labelledby="headingThree-acc1-3" data-parent="#accordion-acc1">
+								<div class="card-body p-s3 mt-s2 mb-s2 bg-white bs-solid bc-light bw-s1">
+									<ul class="mt-s3 mb-s3">
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">{{ p.location }}</p>
+											</div>
+										</li>
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">{{ p.opening_time }}</p>
+											</div>
+										</li>
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">{{ p.closing_time }}</p>
+											</div>
+										</li>
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">Base :- {{ p.base }} and {{ p.tariff }}</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- /ROW -->
+		</div> <!-- /CONTAINER -->
+	</section> <!-- /SECTION -->

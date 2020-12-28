@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 app_name = "Admin"
 
 urlpatterns = [
-    path('',index,name="index"),
+    path('',index,name="home"),
     path('register/',register,name="register"),
     path('aboutus/',aboutus,name="aboutus"),
     path('contactus/',contactus,name="contactus"),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('adminfreeslots/<int:parking_id>/',adminfreeslots, name = "adminfreeslots"),
     path('freed/',freed, name= "freed"),
     path('adminaboutparkingarea/<int:parking_id>/', adminaboutparkingarea, name = "adminaboutparkingarea"),
+    path('logout/',logout_view,name="logout"),
 ]
