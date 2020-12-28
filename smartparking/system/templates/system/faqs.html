@@ -37,68 +37,85 @@
 </head>
 <body>
 
-	<div class="main-header header-shadow cherry-header">
-	    <div class="bg-cherry">
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-lg-6 col-md-12">
-	                    <div class="text-white mt-10 text-center--md text-center--sm text-center--xs">
-	                        Helpline 0123456789
-	                    </div>
-	                </div>
-	                <div class="col-lg-6 col-md-12">
-	                    <div class="text-right text-center--md text-center--sm text-center--xs">
-	                        <span class="text-white mt-8 pl-20 pr-20 d-inline-block">
-	                            Welcome <span class="text-bold-600">Mr. Lucky Charm</span>
-	                        </span>
-	                        <a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase" href="my-bookings.html"><i class="zmdi zmdi-account-o text-size-15 mr-6 float-left mt-1"></i> My Bookings</a>
-	                        <a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase" href="#"><i class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
+<div class="main-header header-shadow cherry-header">
+	<div class="bg-cherry">
 		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<div class="text-white mt-10 text-center--md text-center--sm text-center--xs">
+						Helpline 0123456789
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="text-right text-center--md text-center--sm text-center--xs">
+						<span class="text-white mt-8 pl-20 pr-20 d-inline-block">
+							Welcome <span class="text-bold-600">Mr. Lucky Charm</span>
+						</span>
+						<a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
+							href="my-bookings.html"><i
+								class="zmdi zmdi-account-o text-size-15 mr-6 float-left mt-1"></i> My Bookings</a>
+						<a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
+							href="#"><i class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
 
-			<div class="main-header-container">
+		<div class="main-header-container">
 
-				<div class="logo" data-mobile-logo="assets/images/logo/new_logo2.jpg" data-sticky-logo="assets/images/logo/new_logo2.jpg">
-					<a href="index.html"><img src="assets/images/logo/new_logo2.jpg" alt="logo"/></a>
-				</div> <!-- /LOGO -->
+			<div class="logo" data-mobile-logo="/assets/images/logo/new_logo2.jpg"
+				data-sticky-logo="/assets/images/logo/new_logo2.jpg">
+				<a href="index.html"><img src="/assets/images/logo/new_logo2.jpg" alt="logo" /></a>
+			</div> <!-- /LOGO -->
 
-				<div class="burger-menu">
-					<div class="line-menu line-half first-line"></div>
-					<div class="line-menu"></div>
-					<div class="line-menu line-half last-line"></div>
-				</div> <!-- /BURGER MENU -->
+			<div class="burger-menu">
+				<div class="line-menu line-half first-line"></div>
+				<div class="line-menu"></div>
+				<div class="line-menu line-half last-line"></div>
+			</div> <!-- /BURGER MENU -->
 
-				<nav class="main-menu menu-caret menu-hover-2 submenu-top-border submenu-scale">
-					<ul>
-						<li class="current-menu"><a href="index.html">Home</a></li>
-						<li class="current-menu"><a href="booking.html">Bookings</a>
-							<ul>
-								<!-- <li><a href="parkings.html">Parkings</a></li> -->
-								<li><a href="booking.html">Booking</a></li>
-								<li><a href="booking-confirm.html">Booking Confirm</a></li>
-							</ul>
-						</li>
-						<li><a href="how-it-works.html">How it Works</a></li>
-						<li><a href="about-us.html">About Us</a>
-							<!-- <ul>
+			<nav class="main-menu menu-caret menu-hover-2 submenu-top-border submenu-scale">
+				<ul>
+					<li class="current-menu"><a href="index.html">Home</a></li>
+					<li><a href="{% url 'Admin:register' %}">Register</a>
+						<ul>
+							<!-- <li><a href="parkings.html">Parkings</a></li>
+                        								<li><a href="booking.html">Booking</a></li>
+                        								<li><a href="booking-confirm.html">Booking Confirm</a></li>-->
+							<li><a href="{% url 'Admin:adminregistration' %}">Admin Registration</a></li>
+							<li><a href="{% url 'Admin:userregistration' %}">User Registration</a></li>
+
+						</ul>
+					</li>
+					<li><a href="{% url 'Admin:register' %}">Login</a>
+						<ul>
+							<!-- <li><a href="parkings.html">Parkings</a></li>
+                        														<li><a href="booking.html">Booking</a></li>
+                        														<li><a href="booking-confirm.html">Booking Confirm</a></li>-->
+							<li><a href="{% url 'Admin:adminlogin' %}">Admin Login</a></li>
+							<li><a href="{% url 'Admin:userlogin' %}">User Login</a></li>
+
+						</ul>
+					</li>
+					<li><a href="{% url 'Admin:howitworks' %}">How it Works</a></li>
+					<li><a href="{% url 'Admin:aboutus' %}">About Us</a>
+						<!-- <ul>
 								<li><a href="meet-and-greet.html">Meet & Greet</a></li>
 								<li><a href="testimonials.html">Testimonials</a></li>
 							</ul> -->
-						</li>
-						<!-- <li><a href="blog.html">Complaints</a></li> -->
-						<li class="current-menu"><a href="faqs.html">FAQs</a></li>
-						<li><a href="contact-us.html">Contact Us</a></li>
-					</ul>
-				</nav> <!-- NAVIGATION MENU -->
+					</li>
+					<!-- <li><a href="blog.html">Complaints</a></li> -->
+					<li><a href="{% url 'Admin:faqs' %}">FAQs</a></li>
+					<li><a href="{% url 'Admin:contactus' %}">Contact Us</a></li>
+				</ul>
+			</nav> <!-- NAVIGATION MENU -->
 
-			</div> <!-- /HEADER CONTAINER -->
+		</div> <!-- /HEADER CONTAINER -->
 
-		</div> <!-- /CONTAINER -->
-	</div> <!-- /HEADER -->
+	</div> <!-- /CONTAINER -->
+</div> <!-- /HEADER -->
 
 	<!-- BREADCRUMB -->
 	<section class="bg-cherry pt-s3 pb-s3 text-white">
