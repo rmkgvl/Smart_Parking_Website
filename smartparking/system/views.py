@@ -18,7 +18,16 @@ def register(request):
     return  render(request, 'system/register.html', {})
 
 def aboutus(request):
-    return  render(request, 'system/aboutus.html', {})
+    return  render(request, 'system/about-us.html', {})
+
+def contactus(request):
+    return  render(request, 'system/contact-us.html', {})
+
+def faqs(request):
+    return  render(request, 'system/faqs.html', {})
+
+def howitworks(request):
+    return  render(request, 'system/how-it-works.html', {})
 
 def login(request):
     return render(request, 'system/login.html', {})
@@ -91,7 +100,7 @@ def userregistration(request):
     else:
         user_form = UserForm()
         admin_form = CustomerForm()
-    return render(request, 'system/adminregistration.html', {'user_form': user_form, 'admin_form': admin_form, 'registered': registered})
+    return render(request, 'system/userregistration.html', {'user_form': user_form, 'admin_form': admin_form, 'registered': registered})
 
 def userlogin(request):
     if request.method == 'POST':
