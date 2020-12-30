@@ -275,17 +275,20 @@ def adminfreeslots(request, parking_id):
     context = {
         'orders' : orders,
         'list' : dict1[str(parking_id)],
+        'parkingid':parking_id,
     }
     print(orders.first())
     return render(request, 'system/adminfreeslots.html', context)
 
-def freed(request):
+def freed(request,order_id):
     with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
         dict1 = pickle.load(handle)
     for i in range(0, len(dict1[str(request.session['pid'])])):
         print (dict1[str(request.session['pid'])][i])
         if not dict1[str(request.session['pid'])][i]:
             dict1[str(request.session['pid'])][i] = True
+            orders = Orders.objects.filter(pk=order_id)
+            orders.update(status=False)
             break
     with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'wb') as handle:
         pickle.dump(dict1, handle, protocol=pickle.HIGHEST_PROTOCOL)

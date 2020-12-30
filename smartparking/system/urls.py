@@ -27,7 +27,7 @@ urlpatterns = [
     path('success/', OrderSuccess, name = "OrderSuccess"),
     path('checkout/', checkout, name = "checkout"),
     path('adminfreeslots/<int:parking_id>/',adminfreeslots, name = "adminfreeslots"),
-    path('freed/',freed, name= "freed"),
+    path('freed/<int:order_id>/',freed, name= "freed"),
     path('adminaboutparkingarea/<int:parking_id>/', adminaboutparkingarea, name = "adminaboutparkingarea"),
     path('logout/',logout_view,name="logout"),
 ]

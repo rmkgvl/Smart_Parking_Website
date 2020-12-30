@@ -88,11 +88,12 @@
 	
 	<h3> This are the today's entry times and expected exit times for your parking slot . </h3>
 	<h3> Click free once the user has left the parking slot. </h3>
-
-						<form method="POST" action="{% url 'Admin:freed' %}">
+						{% for o in orders %}
+						<form method="POST" action="{% url 'Admin:freed' o.pk %}">
 							{% csrf_token %}
 							<input type="Submit" value="Free">
 						</form>
+						{% endfor %}
 					</div>
 				</div>
 			</div> <!-- /ROW -->
