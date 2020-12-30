@@ -34,7 +34,7 @@
 			<div class="main-header-container">
 
 				<div class="logo" data-mobile-logo="/assets/images/logo/new_logo2.jpg" data-sticky-logo="/assets/images/logo/new_logo2.jpg">
-					<a href="index.html"><img src="/assets/images/logo/new_logo2.jpg" alt="logo"/></a>
+					<a href="{% url 'Admin:home' %}"><img src="/assets/images/logo/new_logo2.jpg" alt="logo"/></a>
 				</div> <!-- /LOGO -->
 
 				<div class="burger-menu">
@@ -46,8 +46,8 @@
 				<nav class="main-menu menu-caret menu-hover-2 submenu-top-border submenu-scale">
 					<ul>
 						<li class="current-menu"><a href="{% url 'Admin:userdashboard' %}">User Dashboard</a></li>
-
-                        </li>
+						</li>
+						<li><a href="{% url 'Admin:orders' %}">Orders</a></li>
 					</ul>
 				</nav> <!-- NAVIGATION MENU -->
 

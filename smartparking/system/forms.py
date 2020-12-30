@@ -41,10 +41,10 @@ class ParkingAreaForm(forms.ModelForm):
     class Meta:
         model = Parking_area
         fields = '__all__'
-        exclude = ('admin_id','number_of_parking_slots',)
+        exclude = ('admin_id',)
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'enter name'}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'enter address'}),
-            'opening_time': forms.TimeInput({'class': 'form-control', 'placeholder': 'enter opening time'}),
-            'closing_time': forms.TimeInput({'class': 'form-control', 'placeholder': 'enter closing time'}),
+            'name': forms.TextInput(attrs={'placeholder': 'enter name'}),
+            'location': forms.TextInput(attrs={'placeholder': 'enter address'}),
+            'opening_time': forms.TimeInput({'placeholder': 'enter opening time'}),
+            'closing_time': forms.TimeInput({'placeholder': 'enter closing time'}),
         }

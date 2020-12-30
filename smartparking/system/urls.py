@@ -11,6 +11,7 @@ urlpatterns = [
     path('contactus/',contactus,name="contactus"),
     path('howitworks',howitworks,name="howitworks"),
     path('faqs',faqs,name="faqs"),
+    path('orders/', orders, name="orders"),
     path('aboutus/', aboutus, name="aboutus"),
     path('login/', login, name="login"),
     path('adminregistration/',adminregistration,name="adminregistration"),

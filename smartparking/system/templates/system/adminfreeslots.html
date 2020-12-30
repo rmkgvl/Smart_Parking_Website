@@ -8,30 +8,29 @@
 
 	<link rel="shortcut icon" href="/assets/images/logo/new_logo2.jpg">
 	<link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.png">
-
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900"
-		rel="stylesheet">
-
+	
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	
 	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
-
+	
 	<link rel="stylesheet" href="/assets/vendors/menu/src/main.menu.css">
-
+	
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/utilities.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/colors.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/colors-gh.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/colors-g.css">
-
+	
 	<!-- CAROUSEL -->
 	<link rel="stylesheet" href="/assets/vendors/owl.carousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="/assets/vendors/owl.carousel/owl.theme.default.min.css">
-
+	
 	<!-- ANIMATE -->
 	<link rel="stylesheet" type="text/css" href="/assets/vendors/animate/animate.css">
-
+	
 	<!-- ANIMATED HEADLINES -->
 	<link rel="stylesheet" type="text/css" href="/assets/vendors/animated-headline/css/style.css">
-
+	
 	<!-- FANCY BOX -->
 	<link rel="stylesheet" type="text/css" href="/assets/vendors/fancybox/jquery.fancybox.min.css">
 
@@ -67,7 +66,7 @@
 	
 				<div class="logo" data-mobile-logo="/assets/images/logo/new_logo2.jpg"
 					data-sticky-logo="/assets/images/logo/new_logo2.jpg">
-					<a href="index.html"><img src="/assets/images/logo/new_logo2.jpg" alt="logo" /></a>
+					<a href="{% url 'Admin:home' %}"><img src="/assets/images/logo/new_logo2.jpg" alt="logo" /></a>
 				</div> <!-- /LOGO -->
 	
 				<div class="burger-menu">
@@ -87,20 +86,19 @@
 		</div> <!-- /CONTAINER -->
 	</div> <!-- /HEADER -->
 	
-	<h1> This are the today's entry times and expected exit times for your parking slot . </h1>
-	<h1> Click free once the user has left the parking slot. </h1>
+	<h3> This are the today's entry times and expected exit times for your parking slot . </h3>
+	<h3> Click free once the user has left the parking slot. </h3>
+
+						<form method="POST" action="{% url 'Admin:freed' %}">
+							{% csrf_token %}
+							<input type="Submit" value="Free">
+						</form>
+					</div>
+				</div>
+			</div> <!-- /ROW -->
+		</div> <!-- /CONTAINER -->
+	</section>
 	
-	
-	
-	{% for o in orders %}
-	
-	<h2> {{o.customer.first_name}} has booked with vehicle no. {{o.vehicle_number}} </h2>
-	<form method="POST" action="{% url 'Admin:freed' %}">
-		{% csrf_token %}
-		<input type="Submit" value="Free">
-	</form>
-	
-	{% endfor %}
 	<script src="/assets/js/jquery-3.3.1.min.js"></script>
 	<script src="/assets/vendors/appear/jquery.appear.min.js"></script>
 	<script src="/assets/vendors/jquery.easing/jquery.easing.min.js"></script>

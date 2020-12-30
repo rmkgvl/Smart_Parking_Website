@@ -39,7 +39,6 @@
 </head>
 
 <body>
-
     <div class="main-header header-shadow cherry-header">
         <div class="bg-cherry">
             <div class="container">
@@ -58,7 +57,8 @@
                                 href="my-bookings.html"><i
                                     class="zmdi zmdi-account-o text-size-15 mr-6 float-left mt-1"></i> My Bookings</a>
                             <a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
-                                href="{% url 'Admin:logout' %}"><i class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
+                                href="{% url 'Admin:logout' %}"><i
+                                    class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
 
                 <div class="logo" data-mobile-logo="/assets/images/logo/new_logo2.jpg"
                     data-sticky-logo="/assets/images/logo/new_logo2.jpg">
-                    <a href="{% url 'Admin:home' %}"><img src="" alt="logo" /></a>
+                    <a href="{% url 'Admin:home' %}"><img src="/assets/images/logo/new_logo2.jpg" alt="logo" /></a>
                 </div> <!-- /LOGO -->
 
                 <div class="burger-menu">
@@ -83,8 +83,6 @@
                     <ul>
                         <li class="current-menu"><a href="#">Home</a></li>
                         <li><a href="{% url 'Admin:userdashboard' %}">Dashboard</a></li>
-                        <li><a href="{% url 'Admin:parkingarea' %}">View parking areas</a></li>
-                        </ul>
                         <li><a href="{% url 'Admin:orders' %}">Orders</a></li>
                 </nav> <!-- NAVIGATION MENU -->
 
@@ -93,6 +91,64 @@
         </div> <!-- /CONTAINER -->
     </div> <!-- /HEADER -->
 
+
+    <section class="bg-v5-light pt-s5 pb-s5 text-white">
+        <div class="container pt-s3 pb-s3">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="accordion" id="accordion-acc1">
+                        {% for o in orders %}
+                        <div class="card border-none bg-none">
+                            <div id="headingThree-acc1-{{forloop.counter}}">
+                                <h5 class="mb-0">
+                                    <button
+                                        class="btn btn-link btn-block text-uppercase text-size-14 text-bold-600 text-dark rounded-0 pl-0 pr-0 text-left text-cherry--active text-cherry--hover collapsed pt-s1 pb-s1"
+                                        type="button" data-toggle="collapse"
+                                        data-target="#collapseThree-acc1-{{forloop.counter}}" aria-expanded="false"
+                                        aria-controls="collapseThree-acc1-{{forloop.counter}}">
+                                        <span class="mr-s1">
+                                            <span>
+                                                <i class="fa fa-plus hide"></i>
+                                                <i class="fa fa-minus show"></i>
+                                            </span>
+                                        </span>
+                                        {{o.customer.first_name}}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree-acc1-{{forloop.counter}}" class="collapse"
+                                aria-labelledby="headingThree-acc1-{{forloop.counter}}" data-parent="#accordion-acc1">
+                                <div class="card-body p-s3 mt-s2 mb-s2 bg-white bs-solid bc-light bw-s1">
+                                    <ul class="mt-s3 mb-s3">
+                                        <li class="mb-6">
+                                            <div class="d-flex align-items-center">
+                                                <span
+                                                    class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+                                                    <i class="icon-arrow-right"></i>
+                                                </span>
+                                                <p class="m-0">{{o.vehicle_number}}
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="mb-6">
+                                            <div class="d-flex align-items-center">
+                                                <span
+                                                    class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+                                                    <i class="icon-arrow-right"></i>
+                                                </span>
+                                                <p class="m-0">{{ o.parking_area_id.name }}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div> <!-- /ROW -->
+        </div> <!-- /CONTAINER -->
+    </section> <!-- /SECTION -->
     <script src="/assets/js/jquery-3.3.1.min.js"></script>
     <script src="/assets/vendors/appear/jquery.appear.min.js"></script>
     <script src="/assets/vendors/jquery.easing/jquery.easing.min.js"></script>
@@ -118,7 +174,6 @@
     <!-- THEME-INITIALIZATION-FILES -->
     <script src="/assets/js/theme.init.js"></script>
     <script src="/assets/js/custom.js"></script>
-
 </body>
 
 </html>

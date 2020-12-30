@@ -54,9 +54,6 @@
                                 Welcome <span class="text-bold-600">Mr. Lucky Charm</span>
                             </span>
                             <a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
-                                href="my-bookings.html"><i
-                                    class="zmdi zmdi-account-o text-size-15 mr-6 float-left mt-1"></i> My Bookings</a>
-                            <a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
                                 href="{% url 'Admin:logout' %}"><i class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
                         </div>
                     </div>
@@ -69,7 +66,7 @@
 
                 <div class="logo" data-mobile-logo="/assets/images/logo/new_logo2.jpg"
                     data-sticky-logo="/assets/images/logo/new_logo2.jpg">
-                    <a href="index.html"><img src="/assets/images/logo/new_logo2.jpg" alt="logo" /></a>
+                    <a href="{% url 'Admin:home' %}"><img src="/assets/images/logo/new_logo2.jpg" alt="logo" /></a>
                 </div> <!-- /LOGO -->
 
                 <div class="burger-menu">
@@ -82,6 +79,7 @@
                     <ul>
                         <li class="current-menu"><a href="#">Home</a></li>
                         <li><a href="{% url 'Admin:userdashboard' %}">Dashboard</a></li>
+                        <li><a href="{% url 'Admin:orders' %}">Orders</a></li>
                 </nav> <!-- NAVIGATION MENU -->
 
             </div> <!-- /HEADER CONTAINER -->
