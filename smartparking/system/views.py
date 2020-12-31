@@ -9,6 +9,7 @@ from datetime import timedelta
 import datetime, time
 import pytz
 import pickle
+import os
 
 # Create your views here.
 def index(request):
@@ -159,10 +160,10 @@ def addparkingarea(request):
             object1.admin_id = Admin.objects.get(id=request.session['admin_id'])
             #object1.number_of_parking_slots = 5
             object1.save()
-            with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
+            with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
                 dict1 = pickle.load(handle)
             dict1[str(object1.id)] =  [True for i in range(0,object1.number_of_parking_slots)]
-            with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'wb') as handle:
+            with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'wb') as handle:
                 pickle.dump(dict1, handle, protocol=pickle.HIGHEST_PROTOCOL)
             return HttpResponseRedirect(reverse('Admin:admindashboard'))
     else:
@@ -180,7 +181,7 @@ def viewparkingareas(request):
 def aboutparkingarea(request, parking_id):
     request.session['pid'] = str(parking_id)
     parkingarea = Parking_area.objects.filter(id = parking_id)
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
         dict1 = pickle.load(handle)
     print(dict1)
     context = {
@@ -192,7 +193,7 @@ def aboutparkingarea(request, parking_id):
 def adminaboutparkingarea(request, parking_id):
     request.session['pid'] = str(parking_id)
     parkingarea = Parking_area.objects.filter(id = parking_id)
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
         dict1 = pickle.load(handle)
     context = {
         'parkingarea' : parkingarea,
@@ -240,15 +241,10 @@ def check_availability(request):
 def checkout(request):
     request.session['entry-time'] = request.POST['entry-time']
     request.session['exit-time'] = request.POST['exit-time']
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
         dict1 = pickle.load(handle)
     print(dict1)
-    for i in range(0, len(dict1[str(request.session['pid'])])):
-        print (dict1[str(request.session['pid'])][i])
-        if dict1[str(request.session['pid'])][i]:
-            dict1[str(request.session['pid'])][i] = False
-            break
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'wb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'wb') as handle:
         pickle.dump(dict1, handle, protocol=pickle.HIGHEST_PROTOCOL)
     print(dict1[str(request.session['pid'])])
     possible = check_availability(request)
@@ -260,6 +256,13 @@ def checkout(request):
 
 def OrderSuccess(request):
     if(check_availability(request)):
+        with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
+            dict1 = pickle.load(handle)
+        for i in range(0, len(dict1[str(request.session['pid'])])):
+            print (dict1[str(request.session['pid'])][i])
+            if dict1[str(request.session['pid'])][i]:
+                dict1[str(request.session['pid'])][i] = False
+                break
         parking_area = Parking_area.objects.get(pk = int(request.session['pid']))
         print(getstarttime(request))
         order = Orders(parking_area_id = parking_area, customer = Customer.objects.get(pk = int(request.session['user_id'])), vehicle_number = request.POST['veh_no'], starting_time = getstarttime(request), ending_time = getexittime(request), status = True)
@@ -270,26 +273,25 @@ def OrderSuccess(request):
 def adminfreeslots(request, parking_id):
     today = datetime.date.today()
     orders = Orders.objects.filter(parking_area_id = parking_id).filter(starting_time__date__gte = today).filter(status = True)
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
         dict1 = pickle.load(handle)
     context = {
         'orders' : orders,
-        'list' : dict1[str(parking_id)],
         'parkingid':parking_id,
     }
     print(orders.first())
     return render(request, 'system/adminfreeslots.html', context)
 
 def freed(request,order_id):
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'rb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'rb') as handle:
         dict1 = pickle.load(handle)
+    orders = Orders.objects.filter(pk=order_id)
+    orders.update(status=False)
     for i in range(0, len(dict1[str(request.session['pid'])])):
         print (dict1[str(request.session['pid'])][i])
         if not dict1[str(request.session['pid'])][i]:
             dict1[str(request.session['pid'])][i] = True
-            orders = Orders.objects.filter(pk=order_id)
-            orders.update(status=False)
             break
-    with open('C:/Users/Dell/Desktop/django/hwllo/Smart_Parking_Website/smartparking/system/filename.pickle', 'wb') as handle:
+    with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'wb') as handle:
         pickle.dump(dict1, handle, protocol=pickle.HIGHEST_PROTOCOL)
     return HttpResponseRedirect(reverse('Admin:admindashboard'))
