@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Smart Parking</title>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="shortcut icon" href="/assets/images/logo/new_logo2.jpg">
 	<link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.png">
 	
@@ -37,29 +38,6 @@
 </head>
 <body>
 	<div class="main-header header-shadow cherry-header">
-		<div class="bg-cherry">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-12">
-						<div class="text-white mt-10 text-center--md text-center--sm text-center--xs">
-							Helpline 0123456789
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-12">
-						<div class="text-right text-center--md text-center--sm text-center--xs">
-							<span class="text-white mt-8 pl-20 pr-20 d-inline-block">
-								Welcome <span class="text-bold-600">Mr. Lucky Charm</span>
-							</span>
-							<a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
-								href="my-bookings.html"><i
-									class="zmdi zmdi-account-o text-size-15 mr-6 float-left mt-1"></i> My Bookings</a>
-							<a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
-								href="{% url 'Admin:logout' %}"><i class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="container">
 	
 			<div class="main-header-container">
@@ -85,15 +63,95 @@
 	
 		</div> <!-- /CONTAINER -->
 	</div> <!-- /HEADER -->
-	
-	<h3> This are the today's entry times and expected exit times for your parking slot . </h3>
-	<h3> Click free once the user has left the parking slot. </h3>
+	<div class="container">
+		<div class="card">
+			<div class="card-body">
+				<h3> These are the today's entry times and expected exit times for your parking slot . </h3>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<h3> Click free once the user has left the parking slot. </h3>
+			</div>
+		</div>
+
+		
+</div>
+
+	<section class="bg-v5-light pt-s5 pb-s5 text-white">
+		<div class="container pt-s3 pb-s3">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="accordion" id="accordion-acc1">
 						{% for o in orders %}
-						<h1> {{o.starting_time}} </h1>
-						<form method="POST" action="{% url 'Admin:freed' o.pk %}">
-							{% csrf_token %}
-							<input type="Submit" value="Free">
-						</form>
+						<div class="card border-none bg-none">
+							<div id="headingThree-acc1-{{forloop.counter}}">
+								<h5 class="mb-0">
+									<button
+										class="btn btn-link btn-block text-uppercase text-size-14 text-bold-600 text-dark rounded-0 pl-0 pr-0 text-left text-cherry--active text-cherry--hover collapsed pt-s1 pb-s1"
+										type="button" data-toggle="collapse"
+										data-target="#collapseThree-acc1-{{forloop.counter}}" aria-expanded="false"
+										aria-controls="collapseThree-acc1-{{forloop.counter}}">
+										<span class="mr-s1">
+											<span>
+												<i class="fa fa-plus hide"></i>
+												<i class="fa fa-minus show"></i>
+											</span>
+										</span>
+										{{o.id}}
+									</button>
+								</h5>
+							</div>
+							<div id="collapseThree-acc1-{{forloop.counter}}" class="collapse"
+								aria-labelledby="headingThree-acc1-{{forloop.counter}}" data-parent="#accordion-acc1">
+								<div class="card-body p-s3 mt-s2 mb-s2 bg-white bs-solid bc-light bw-s1">
+									<ul class="mt-s3 mb-s3">
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span
+													class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">{{o.starting_time}} {{ o.ending_time }}
+												</p>
+											</div>
+										</li>
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span
+													class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">{{o.vehicle_number}}
+												</p>
+											</div>
+										</li>
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span
+													class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0">Rs.{{o.parking_area_id.base}}
+												</p>
+											</div>
+										</li>
+										<li class="mb-6">
+											<div class="d-flex align-items-center">
+												<span
+													class="bg-cherry text-white h--20 w--20 d-flex justify-content-center align-items-center text-size-8 rounded-circle mr-s2">
+													<i class="icon-arrow-right"></i>
+												</span>
+												<p class="m-0"><form method="POST" action="{% url 'Admin:freed' o.pk %}">
+													{% csrf_token %}
+													<input type="Submit" value="Free">
+												</form></p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
 						{% endfor %}
 					</div>
 				</div>
@@ -107,7 +165,15 @@
 	<script src="/assets/js/popper.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
 	<script src="/assets/vendors/common/common.min.js"></script>
-	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 	<!-- FANCY-BOX -->
 	<script src="/assets/vendors/fancybox/jquery.fancybox.min.js"></script>
 	

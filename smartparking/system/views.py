@@ -51,6 +51,7 @@ def adminlogin(request):
         if user:
             if user.is_active:
                 user_login(request,user)
+                print(user.pk)
                 request.session['admin_id']=Admin.objects.filter(user_id = user.pk).first().id
                 return HttpResponseRedirect(reverse('Admin:admindashboard'))
 
@@ -217,7 +218,7 @@ def check_availability(request):
     
     date_time = getstarttime(request)
     today = date_time.date()
-    orders = Orders.objects.all().order_by('starting_time').order_by('ending_time').filter(starting_time__date = today)
+    orders = Orders.objects.all().order_by('starting_time').order_by('ending_time').filter(starting_time__date = today).filter(status=True)
     end_time = getexittime(request)
     x = date_time
     parkingarea = Parking_area.objects.get(pk = request.session['pid'])
@@ -263,6 +264,8 @@ def OrderSuccess(request):
             if dict1[str(request.session['pid'])][i]:
                 dict1[str(request.session['pid'])][i] = False
                 break
+        with open(os.path.join(os.path.dirname(__file__), 'filename.pickle'), 'wb') as handle:
+            pickle.dump(dict1, handle, protocol=pickle.HIGHEST_PROTOCOL)
         parking_area = Parking_area.objects.get(pk = int(request.session['pid']))
         print(getstarttime(request))
         order = Orders(parking_area_id = parking_area, customer = Customer.objects.get(pk = int(request.session['user_id'])), vehicle_number = request.POST['veh_no'], starting_time = getstarttime(request), ending_time = getexittime(request), status = True)

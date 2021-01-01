@@ -9,6 +9,8 @@
 
 	<link rel="shortcut icon" href="/assets/images/logo/new_logo2.jpg">
 	<link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.png">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 	
@@ -46,15 +48,6 @@
 					<div class="col-lg-6 col-md-12">
 						<div class="text-white mt-10 text-center--md text-center--sm text-center--xs">
 							Helpline 0123456789
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-12">
-						<div class="text-right text-center--md text-center--sm text-center--xs">
-							<span class="text-white mt-8 pl-20 pr-20 d-inline-block">
-								Welcome <span class="text-bold-600">Mr. Lucky Charm</span>
-							</span>	
-							<a class="btn btn-white text-cherry text-size-11 text-bold-600 mt-5 mb-5 mt-10--md mb-10--md mt-10--sm mb-10--sm mt-10--xs mb-10--xs text-uppercase"
-								href="#"><i class="zmdi zmdi-power text-size-15 mr-6 float-left mt-1"></i> Logout</a>
 						</div>
 					</div>
 				</div>
@@ -105,8 +98,8 @@
 									<li><a href="testimonials.html">Testimonials</a></li>
 								</ul> -->
 						</li>
-						<!-- <li><a href="blog.html">Complaints</a></li> -->
-						<li><a href="{% url 'Admin:faqs' %}">FAQs</a></li>
+						<!-- <li><a href="blog.html">Complaints</a></li> 
+						<li><a href="{% url 'Admin:faqs' %}">FAQs</a></li>-->
 						<li><a href="{% url 'Admin:contactus' %}">Contact Us</a></li>
 					</ul>
 				</nav> <!-- NAVIGATION MENU -->
@@ -160,7 +153,9 @@
 							<div id="collapseOne-acc1-1" class="collapse show" aria-labelledby="headingOne-acc1-1" data-parent="#accordion-acc1">
 								<div class="card-body p-s3 mt-s2 mb-s2 bg-white bs-solid bc-light bw-s1">
 									<div class="mt-s3 mb-s3">
-										<p class="m-0">We need to add content here. Just filling it now with something. More of something. Less of nothing.</p>
+										<p class="m-0">Smart Parking System tries to eliminate the problem of finding parking spaces by providing an online parking website that the users can use to
+										track and figure out which parking slot could be free and also book a slot so that they can easily park their vehicle
+										eliminating the search for a parking slot.</p>
 									</div>
 								</div>
 							</div>
@@ -175,14 +170,15 @@
 												<i class="fa fa-minus show"></i>
 											</span>
 										</span>
-										How We Do This...?
+										Why Smart Parking?
 									</button>
 								</h5>
 							</div>
 							<div id="collapseTwo-acc1-2" class="collapse" aria-labelledby="headingTwo-acc1-2" data-parent="#accordion-acc1">
 								<div class="card-body p-s3 mt-s2 mb-s2 bg-white bs-solid bc-light bw-s1">
 									<div class="mt-s3 mb-s3">
-										<p>We need to add content here. Just filling it now with something. More of something. Less of nothing.</p>
+										<p>The problem of traffic and parking is becoming more and more tedious nowadays. Many researches say that a considerable
+										amount of the traffic is caused by people who are searching for a parking slot to park their vehicle.</p>
 									</div>
 								</div>
 							</div>
@@ -580,7 +576,16 @@
 	</footer>
     <!-- End: FOOTER -
     ################################################################## -->
-
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+		crossorigin="anonymous"></script>
 	<script src="/assets/js/jquery-3.3.1.min.js"></script>
 	<script src="/assets/vendors/appear/jquery.appear.min.js"></script>
 	<script src="/assets/vendors/jquery.easing/jquery.easing.min.js"></script>
